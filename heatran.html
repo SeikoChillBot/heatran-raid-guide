@@ -28,44 +28,44 @@ function raidPreflightBlock(strat){
  const section=document.createElement('section');section.className='raid-preflight';
  const head=document.createElement('header');
  const title=document.createElement('h3');
- title.textContent=isCore?'AVANT TOUR 1 — POSITION OBLIGATOIRE':'AVANT TOUR 1 — REPÈRE DE LA VIDÉO';
+ title.textContent=isCore?'BEFORE TURN 1 — REQUIRED POSITION':'BEFORE TURN 1 — VIDEO REFERENCE';
  const source=document.createElement('span');source.className='preflight-source';
  source.textContent=isCore?'Crimson Core':'Beorns / JinxedBoon';
  head.append(title,source);
  const position=document.createElement('p');position.className='position';
- position.textContent=isCore?'Maganon à droite de Heatran':'Vidéo : Chartor à gauche · Heatran au centre · Maganon à droite';
+ position.textContent=isCore?'Magmortar to the right of Heatran':'Video: Torkoal left · Heatran center · Magmortar right';
  section.append(head,position);
- const warning=document.createElement('p');warning.className='reset';warning.textContent=isCore?'Si Maganon n’est pas à droite : reset.':'Maganon absent : reset.';section.append(warning);
+ const warning=document.createElement('p');warning.className='reset';warning.textContent=isCore?'If Magmortar is not on the right: reset.':'No Magmortar: reset.';section.append(warning);
  const sourceNote=document.createElement('p');sourceNote.className='detail';
- sourceNote.textContent=isCore?'Crimson Core n’impose pas une position précise à Chartor.':'Le placement gauche/droite vient de la vidéo. Le PDF indique « RESET FOR MAGMORTAR » sans imposer de côté à Maganon.';
+ sourceNote.textContent=isCore?'Crimson Core does not require Torkoal to appear on a particular side.':'The left/right arrangement comes from the video. The PDF says “RESET FOR MAGMORTAR” without requiring Magmortar on a specific side.';
  section.append(sourceNote);
  return section
 }
 function raidTurnAdvice(d){
  const section=document.createElement('section');section.className='raid-tips';
- const heading=document.createElement('h3');heading.textContent='À retenir — '+d.title;
+ const heading=document.createElement('h3');heading.textContent='Key points — '+d.title;
  const list=document.createElement('ul');for(const point of d.points){let li=document.createElement('li');li.textContent=point;list.append(li)}
  const warning=document.createElement('p');warning.className='raid-alert';warning.textContent=d.alert;
  section.append(heading,list,warning);return section
 }
 function renderStrategyComparison(app,strat){
  const overview=document.createElement('section');overview.className='raid-strategy-overview';
- const title=document.createElement('h2');title.textContent='Différences entre les stratégies';
+ const title=document.createElement('h2');title.textContent='Strategy differences';
  const intro=document.createElement('p');
- intro.textContent='Comparaison rapide, avec les tours concernés. Toutes les actions et consignes détaillées restent dans Combat, au tour correspondant.';
+ intro.textContent='Quick comparison with the relevant turns. Detailed instructions remain in Combat, under their corresponding turns.';
  overview.append(title,intro);
  const choices=[
-  {id:'core',title:'Crimson Core',subtitle:'Rotation de référence sur six phases',steps:[
-   ['Avant le combat','Maganon à droite obligatoire (reset sinon).'],
-   ['Tour 2 · Joueur 1','Nidoking en deuxième vague.'],
-   ['Tour 3 · Anti-Brume','Xatu J3 et Bekipan J4.'],
-   ['Tours 5–6 · Fin','Séquence annoncée sous la pluie, à adapter si les K.O. décalent la rotation.']
+  {id:'core',title:'Crimson Core',subtitle:'Reference rotation over six phases',steps:[
+   ['Before the battle','Magmortar must be on the right (reset otherwise).'],
+   ['Turn 2 · Player 1','Nidoking in the second wave.'],
+   ['Turn 3 · Defog','P3 Xatu and P4 Pelipper.'],
+   ['Turns 5–6 · Finisher','Rain-based sequence; adjust if KOs disrupt the planned rotation.']
   ]},
-  {id:'video',title:'Beorns / JinxedBoon',subtitle:'Version vidéo avec deux Xatu',steps:[
-   ['Avant le combat','Maganon présent (sinon reset). Vidéo : Chartor gauche / Maganon droite, sans obligation de côté dans le PDF.'],
-   ['Tour 2 · Joueur 1','Bekipan à la place de Nidoking.'],
-   ['Tour 3 · Anti-Brume','Deux Xatu : J3 et J4 (vidéo).'],
-   ['À partir du tour 5','Choix conditionnels selon les K.O., la météo et les Pokémon encore présents.']
+  {id:'video',title:'Beorns / JinxedBoon',subtitle:'Video variant with two Xatu',steps:[
+   ['Before the battle','Magmortar must be present (reset otherwise). Video: Torkoal left / Magmortar right; the PDF does not mandate the sides.'],
+   ['Turn 2 · Player 1','Pelipper instead of Nidoking.'],
+   ['Turn 3 · Defog','Two Xatu: P3 and P4 (video).'],
+   ['From turn 5 onward','Conditional decisions based on KOs, weather and which Pokémon remain on the field.']
   ]}
  ];
  const grid=document.createElement('div');grid.className='raid-strategy-compare-grid';
@@ -76,7 +76,7 @@ function renderStrategyComparison(app,strat){
   const name=document.createElement('h3');name.textContent=choice.title;head.append(name);
   if(choice.id===strat){
    const active=document.createElement('span');active.className='compare-active';
-   active.textContent='Stratégie sélectionnée';head.append(active)
+   active.textContent='Selected strategy';head.append(active)
   }
   const subtitle=document.createElement('p');subtitle.className='compare-subtitle';subtitle.textContent=choice.subtitle;
   card.append(head,subtitle);
@@ -91,22 +91,22 @@ function renderStrategyComparison(app,strat){
  }
  overview.append(grid);
  const caption=document.createElement('p');caption.className='compare-caption';
- caption.textContent='Ici, Beorns suit la version vidéo à deux Xatu. Le même PDF propose une variante actualisée avec Xatu J3 + Bekipan J4 et un timing différent : ce n’est pas une substitution immédiate de Pokémon.';
+ caption.textContent='This Beorns option follows the two-Xatu video variant. The same PDF also describes an updated version with P3 Xatu + P4 Pelipper and different timing; do not swap Pokémon between the two rotations without adapting the whole strategy.';
  overview.append(caption);
  app.append(overview)
 }
 function renderMechanics(app,strat){
  renderStrategyComparison(app,strat);
  const intro=document.createElement('section');intro.className='mechanics-intro';
- const title=document.createElement('h2');title.textContent='Mécaniques communes et seuils de PV';
- const description=document.createElement('p');description.textContent='Les règles générales de Heatran, communes aux stratégies : seuils de PV, météo, pièges et effets des capacités.';
+ const title=document.createElement('h2');title.textContent='Shared mechanics and HP thresholds';
+ const description=document.createElement('p');description.textContent='General Heatran mechanics shared by both strategies: HP thresholds, weather, hazards and move effects.';
  intro.append(title,description);app.append(intro);
- // Tolère l'ancien tableau comme le nouvel objet, afin de conserver les fiches en cas de cache.
+ // Accept both historical array and object formats to keep the mechanics available across stale caches.
  const raw=typeof raidMechanicsCommon==='undefined'?null:raidMechanicsCommon;
  const entries=Array.isArray(raw)?raw:raw&&typeof raw==='object'?[...(Array.isArray(raw.seuils)?raw.seuils:[]),...(Array.isArray(raw.principes)?raw.principes:[])]:[];
  if(!entries.length){
   const error=document.createElement('p');error.className='raid-source-note';
-  error.textContent='Les mécaniques ne se sont pas chargées. Actualisez la page pour obtenir la dernière version.';
+  error.textContent='Mechanics could not be loaded. Refresh the page to get the latest version.';
   app.append(error);return
  }
  const grid=document.createElement('div');grid.className='mechanic-grid';
