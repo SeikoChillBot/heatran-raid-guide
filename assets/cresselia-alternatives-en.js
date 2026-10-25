@@ -205,8 +205,8 @@ window.CresseliaAlternatives=Object.freeze({
           "item": "Rock Gem",
           "nature": "Adamant",
           "talent": "Sand Stream",
-          "ev": "Not specified in source dans la table de Sensei",
-          "iv": "Not specified in source dans la table de Sensei",
+          "ev": "Not specified in Sensei's table",
+          "iv": "Not specified in Sensei's table",
           "attacks": "Assurance / Crunch / Power Gem / Captivate",
           "note": ""
         }
@@ -273,7 +273,7 @@ window.CresseliaAlternatives=Object.freeze({
           "item": "Choice Band",
           "nature": "Adamant",
           "talent": "Not specified",
-          "ev": "Not specified in source dans cette section",
+          "ev": "Not specified in this section",
           "iv": "HP 31 / Atk 31 / X Sp. Def 31",
           "attacks": "Assurance",
           "note": "Source inconsistency: the last column is labeled Tyranitar but shows Krookodile in the artwork and rotation. Confirm the Pokémon before breeding."
