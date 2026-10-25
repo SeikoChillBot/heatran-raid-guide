@@ -7,11 +7,11 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "id": 450,
         "item": "Herbe Blanche",
         "talent": "Sable Volant",
-        "nature": "Augmente la Déf. Spé. sans baisser la Vitesse",
+        "nature": "Raises Sp. Def without lowering Speed",
         "iv": "PV 31 ; Déf. Spé. 31 ; Vit. 27–31",
         "ev": "20 Déf. Spé. ; 252 Vit. ; reste Déf.",
         "attacks": "Séduction",
-        "note": "Séduction au T1 ; K.O. prévu au T2. Le timing est déterminant."
+        "note": "Use Captivate on turn 1; a KO is planned for turn 2. Timing is critical."
       },
       {
         "n": "Farfaduvet",
@@ -20,9 +20,9 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "talent": "Libre",
         "nature": "Libre",
         "iv": "Non imposés",
-        "ev": "Éviter les EV en Déf. Spé.",
+        "ev": "Avoid investing EVs in Sp. Def.",
         "attacks": "Mur Lumière",
-        "note": "Pose Mur Lumière au T3. Éviter la Déf. Spé. pour conserver le ciblage prévu."
+        "note": "Set up Light Screen on turn 3. Avoid Sp. Def investment to preserve the intended AI target."
       },
       {
         "n": "Darumacho",
@@ -33,7 +33,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Att. 31",
         "ev": "252 Att. ; Vitesse finale inférieure à 269 ; reste Déf./Att. Spé.",
         "attacks": "Boutefeu",
-        "note": "Attaquant T4. Conserver la Vitesse finale sous le seuil indiqué par la source."
+        "note": "Turn 4 attacker. Keep final Speed below the source's benchmark."
       },
       {
         "n": "Gueriaigle",
@@ -44,7 +44,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Att. 21–31 ; Vit. 3–31 ; PV 2–31 ; Déf. Spé. 3–31",
         "ev": "6 PV ; 252 Att. ; 252 Vit.",
         "attacks": "Assurance",
-        "note": "T5. Construit pour atteindre le plafond de dégâts sans objet offensif."
+        "note": "Turn 5. Built to reach the damage cap without an offensive held item."
       },
       {
         "n": "Milobellus",
@@ -66,7 +66,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. Spé. 31 ; Déf. Spé. 31",
         "ev": "6 PV ; 252 Att. Spé. ; 252 Déf. Spé.",
         "attacks": "Saumure",
-        "note": "T8–T10. Variante de répartition polyvalente corrigée : 232 Att. Spé. / 252 Déf. Spé. / 20 Vit. ; comparer avant d'utiliser entre rôles."
+        "note": "Turns 8–10. Corrected flexible spread: 232 Sp. Atk / 252 Sp. Def / 20 Spe; check role requirements before reusing it."
       }
     ],
     [
@@ -79,7 +79,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 2–31 ; Déf. Spé. 2–31 ; Att. 31 ; Vit. 31",
         "ev": "252 Att. ; 252 Vit.",
         "attacks": "Dégommage",
-        "note": "T1 : lance la Pointe Poison avec Dégommage."
+        "note": "Turn 1: uses Fling with a Poison Barb."
       },
       {
         "n": "Scalproie",
@@ -90,7 +90,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. 31 ; Déf. Spé. 31",
         "ev": "252 Att. ; 252 Déf. Spé.",
         "attacks": "Coup Bas",
-        "note": "T2–T3. L'un des trois Scalproie du noyau offensif."
+        "note": "Turns 2–3. One of the three Bisharp in the offensive core."
       },
       {
         "n": "Sharpedo",
@@ -112,7 +112,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Att. 21–31 ; Vit. 3–31",
         "ev": "6 PV ; 252 Att. ; 252 Déf. Spé.",
         "attacks": "Assurance",
-        "note": "T5. Sa Déf. Spé. oriente le ciblage vers le Gueriaigle de J1 ; ne pas ajouter des EV Vitesse librement."
+        "note": "Turn 5. Its Sp. Def spread steers targeting toward Player 1's Braviary. Do not freely add Speed EVs."
       },
       {
         "n": "Milobellus",
@@ -123,7 +123,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. Spé. 31 ; Déf. Spé. 31",
         "ev": "6 PV ; 252 Att. Spé. ; 252 Déf. Spé. (Vitesse à vérifier)",
         "attacks": "Saumure",
-        "note": "T6–T7. Doit dépasser Tyranocif à −2 en Vitesse ; la source exige de régler cet ordre."
+        "note": "Turns 6–7. Must outspeed Tyranitar at −2 Speed, as specified by the source."
       },
       {
         "n": "Pingoléon",
@@ -134,20 +134,20 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. Spé. 31 ; Déf. Spé. 31 ; Vit. 31",
         "ev": "232 Att. Spé. ; 252 Déf. Spé. ; 20 Vit.",
         "attacks": "Saumure",
-        "note": "T8–T10. Répartition corrigée confirmée par l'auteur du guide (mars 2026)."
+        "note": "Turns 8–10. Corrected spread confirmed by the guide author in March 2026."
       }
     ],
     [
       {
         "n": "Alakazam",
         "id": 65,
-        "item": "Sans objet",
+        "item": "No held item",
         "talent": "Non imposé",
-        "nature": "Ne doit pas augmenter la Déf. Spé.",
+        "nature": "Must not raise Sp. Def.",
         "iv": "Déf. Spé. 0–30",
         "ev": "252 Vit. ; reste Att./Déf./Att. Spé.",
         "attacks": "Rune Protect",
-        "note": "T1 : protection contre les statuts."
+        "note": "Turn 1: protection against status conditions."
       },
       {
         "n": "Scalproie",
@@ -158,18 +158,18 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. 31 ; Déf. Spé. 31",
         "ev": "152 PV ; 168 Att. ; 88 Déf. Spé.",
         "attacks": "Coup Bas",
-        "note": "T2–T3. Répartition reprise telle que publiée ; les EV restants ne sont pas déduits."
+        "note": "Turns 2–3. EV spread preserved as published; the remaining EVs are not inferred."
       },
       {
         "n": "Nostenfer",
         "id": 169,
-        "item": "Sans objet",
+        "item": "No held item",
         "talent": "Non imposé",
         "nature": "Libre",
         "iv": "Non imposés",
         "ev": "252 Vit. ; reste Att./Déf./Att. Spé.",
         "attacks": "Bombe Acide",
-        "note": "T4 : baisse la Déf. Spé. du boss pour la suite."
+        "note": "Turn 4: lowers the boss's Sp. Def to set up later damage."
       },
       {
         "n": "Sidérella",
@@ -180,7 +180,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 29–31 ; Déf. Spé. 29–31 ; Att. Spé. 31",
         "ev": "6 PV ; 252 Att. Spé. ; 252 Déf. Spé.",
         "attacks": "Ball’Ombre",
-        "note": "T5. Répartition en Déf. Spé. propre au joueur 3."
+        "note": "Turn 5. Player 3-specific Sp. Def spread."
       },
       {
         "n": "Colhomard",
@@ -191,7 +191,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 20–31 ; Att. 31 ; Déf. Spé. 20–31",
         "ev": "6 PV ; 252 Att. ; 252 Déf. Spé.",
         "attacks": "Dégommage · Assurance",
-        "note": "Dégommage au T6 ; Assurance du T8 au T10."
+        "note": "Fling on turn 6; Assurance on turns 8–10."
       },
       {
         "n": "Tyranocif",
@@ -202,7 +202,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. 31 ; Déf. Spé. 31 ; Vit. 31",
         "ev": "6 PV ; 252 Att. ; 252 Déf. Spé.",
         "attacks": "Séduction · Assurance",
-        "note": "T7 : Séduction permet de contrôler l'Att. Spé. de Cresselia avant le final."
+        "note": "Turn 7: Captivate controls Cresselia's Sp. Atk before the endgame."
       }
     ],
     [
@@ -215,7 +215,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Non imposés",
         "ev": "252 Vit. ; reste Att./Déf./Att. Spé.",
         "attacks": "Air Veinard",
-        "note": "T1 : protège des coups critiques."
+        "note": "Turn 1: protects the team against critical hits."
       },
       {
         "n": "Scalproie",
@@ -226,7 +226,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. 31 ; Déf. Spé. 31",
         "ev": "6 PV ; 252 Att. ; 252 Déf. Spé.",
         "attacks": "Coup Bas · Assurance",
-        "note": "Coup Bas T2–T3 ; Assurance T8–T10 sur le même emplacement d'équipe."
+        "note": "Sucker Punch on turns 2–3; Assurance on turns 8–10 from the same party slot."
       },
       {
         "n": "Ectoplasma",
@@ -248,15 +248,15 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Att. Spé. 31",
         "ev": "6 PV ; 252 Att. Spé. ; 252 Vit.",
         "attacks": "Ball’Ombre",
-        "note": "T5 : répartition visant le ciblage spécifique de l'IA sur J4."
+        "note": "Turn 5. EV spread designed around Player 4's AI-targeting requirements."
       },
       {
         "n": "Lippoutou",
         "id": 124,
         "item": "Baie Pommo",
         "talent": "Non imposé",
-        "nature": "Nature neutre pour la Déf. Spé.",
-        "iv": "À répartir selon rôle (source sans seuil)",
+        "nature": "Nature neutral to Sp. Def.",
+        "iv": "Allocate for your role (source gives no benchmark)",
         "ev": "Répartition libre en Att./Déf./Att. Spé.",
         "attacks": "Air Veinard",
         "note": "T6 : renouvelle la protection contre les coups critiques."
@@ -296,7 +296,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Air Veinard"
         ]
       ],
-      "info": "Hippodocus applique Séduction, Dimoret lance la Pointe Poison et les deux protections se mettent en place. Le ciblage est sensible aux statistiques de départ."
+      "info": "Hippowdon uses Captivate, Weavile uses Fling with Poison Barb, and both protective effects are set up. AI targeting depends on starting stats."
     },
     {
       "hp": "≈ 85 %",
@@ -319,7 +319,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Coup Bas"
         ]
       ],
-      "info": "Le K.O. d’Hippodocus doit libérer l'emplacement J1. Les Scalproie J2, J3 et J4 frappent avec Coup Bas."
+      "info": "Hippowdon must faint to free Player 1's slot. Bisharp on Players 2, 3 and 4 use Sucker Punch."
     },
     {
       "hp": "≈ 72 %",
@@ -342,7 +342,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Coup Bas"
         ]
       ],
-      "info": "Farfaduvet pose Mur Lumière. La mécanique d’alternance physique / spécial devient déterminante après le palier des 75 % : respecter l’ordre réel d’action."
+      "info": "Whimsicott sets up Light Screen. Physical/special damage alternation becomes critical after the 75% HP threshold; follow the actual move order."
     },
     {
       "hp": "≈ 63 %",
@@ -365,7 +365,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Châtiment"
         ]
       ],
-      "info": "Bombe Acide prépare les attaques spéciales. Ne pas changer l’ordre de Vitesse des Pokémon sans recalcul."
+      "info": "Acid Spray sets up later special damage. Do not change Pokémon Speed order without recalculating."
     },
     {
       "hp": "≈ 45 %",
@@ -388,7 +388,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Ball’Ombre"
         ]
       ],
-      "info": "Les Gueriaigle attaquent physiquement et les Sidérella spécialement. Le réglage des défenses oriente les cibles choisies par Cresselia."
+      "info": "Braviary attack physically while Gothitelle deal special damage. Defensive benchmarks influence Cresselia's target selection."
     },
     {
       "hp": "≈ 39 %",
@@ -434,11 +434,11 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Assurance"
         ]
       ],
-      "info": "Lance-Boue réduit la pression de Tonnerre. Tyranocif intervient pour ramener l’Attaque Spéciale du boss au niveau prévu avant Pingoléon."
+      "info": "Mud Sport reduces Thunderbolt pressure. Tyranitar then brings the boss's Sp. Atk down to its planned level before Empoleon."
     },
     {
       "hp": "≈ 22 %",
-      "label": "Début du final",
+      "label": "Start of the endgame",
       "actions": [
         [
           5,
@@ -457,7 +457,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Assurance"
         ]
       ],
-      "info": "Double Saumure avec les deux Pingoléon, complétée par Colhomard et Scalproie. Le réglage corrigé de Pingoléon J2 compte."
+      "info": "Both Empoleon use Brine, backed by Crawdaunt and Bisharp. Player 2's corrected Empoleon spread matters."
     },
     {
       "hp": "≈ 11 %",
@@ -480,7 +480,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Assurance"
         ]
       ],
-      "info": "Même séquence que le tour 8 ; viser le palier d’environ 11 % sans changer l’ordre d’action."
+      "info": "Repeat turn 8's sequence; aim for roughly 11% remaining HP without changing the move order."
     },
     {
       "hp": "0 % visé",
@@ -503,21 +503,21 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Assurance"
         ]
       ],
-      "info": "La rotation publiée prévoit de vaincre Cresselia en dix turns. Selon la variation en jeu, la fin peut exiger une adaptation ; pas de garantie automatique."
+      "info": "The published rotation aims to defeat Cresselia in ten turns. In-game variance may require adjustments; victory is not guaranteed."
     }
   ],
   "mechanics": [
     [
       "Lien Miroir · 100 %",
-      "Quand un Pokémon tombe K.O., les Pokémon de la même espèce sur le côté concerné peuvent tomber avec lui. Prévoir les entrées et sorties des équipes."
+      "When a Pokémon faints, others of the same species on the affected side may faint too. Plan party slots and switch-ins accordingly."
     ],
     [
       "Plénitude · 80 %",
-      "Cresselia augmente ses statistiques spéciales. Séduction est chronométrée pour contrôler ses dégâts."
+      "Cresselia boosts its special stats. Captivate is timed to reduce incoming damage."
     ],
     [
       "Alternance · 75 %",
-      "La mécanique impose une alternance des catégories physiques et spéciales. L’ordre réel des attaques importe autant que les actions affichées par joueur."
+      "The raid requires alternating physical and special damage categories. Actual move order matters as much as each player's listed actions."
     ],
     [
       "Distorsion · 65 %",
@@ -525,27 +525,27 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
     ],
     [
       "Bascule de l’alternance · 50 %",
-      "La règle du type de dégâts alternés change à ce palier. Contrôler les dégâts effectifs avant de poursuivre."
+      "The alternating damage-type rule changes at this threshold. Check actual damage before continuing."
     ],
     [
       "Plénitude · 25 %",
-      "Nouveau renforcement : les défenses, Lance-Boue et Séduction deviennent critiques pour le final."
+      "Another boost: defensive benchmarks, Mud Sport and Captivate become critical for the endgame."
     ],
     [
-      "Plafond des dégâts",
-      "Le guide v2.1 vise le plafond de dégâts (4 % pour les attaques super efficaces du raid 6★). Les objets ne servent pas toujours à augmenter directement les dégâts."
+      "Damage cap",
+      "Guide v2.1 targets the 6★ raid damage cap (4% for super-effective attacks). Held items do not always directly increase damage."
     ],
     [
-      "Réinitialisation des baisses de stats",
-      "Selon les correctifs des raids, les baisses de statistiques peuvent disparaître ensemble à l'expiration du premier minuteur (8 actions). Ne pas décaler Séduction."
+      "Stat-drop resets",
+      "Under updated raid mechanics, stat drops may reset together when the first eight-action timer expires. Do not mistime Captivate."
     ],
     [
       "Ciblage de l’IA",
-      "Les EV de Défense Spéciale et les Vitesses de Gueriaigle et Sidérella sont calibrés pour attirer certaines attaques sur le bon joueur."
+      "Braviary and Gothitelle's Sp. Def and Speed EVs are tuned to draw certain attacks toward the intended player."
     ],
     [
       "Tonnerre / Lance-Boue",
-      "Lance-Boue diminue l’efficacité des attaques Électrik et protège notamment la phase Pingoléon."
+      "Mud Sport reduces Electric-type move damage, particularly during the Empoleon phase."
     ],
     [
       "Protection et coups critiques",
@@ -553,29 +553,29 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
     ],
     [
       "Pokémon additionnels",
-      "Feunard et Fragilady apparaissent dans des guides communautaires du raid. Leurs attaques citées comprennent Tricherie et Ball’Météo."
+      "Ninetales and Lilligant appear in other community strategies. Their cited moves include Foul Play and Weather Ball."
     ]
   ],
   "sources": [
     [
       "Auteur du guide v2.1 — profil Cadoiz",
       "https://forums.pokemmo.com/index.php?/profile/541645-cadoiz/",
-      "Version 2.1 de Cadoiz, RogueMaster (Phoebe), Th3Fastest et OhKaibaBoy, commentaires de correction des EV de Pingoléon."
+      "Cadoiz's v2.1 with RogueMaster (Phoebe), Th3Fastest and OhKaibaBoy, including Empoleon EV corrections."
     ],
     [
       "Crimson Core — transcription 19 septembre 2026",
       "https://www.crimsoncoremmo.co.uk/guides/cresselia-the-three-musketeers-strat",
-      "Reprise détaillée des 24 fiches et de la rotation en dix turns ; la page précise que le forum source était partiellement inaccessible pendant sa consultation."
+      "Detailed 24-build, ten-turn rotation; this source notes the original forum was partly inaccessible during review."
     ],
     [
-      "MMOBreeder — Cresselia en français",
+      "MMOBreeder — French-language Cresselia guide",
       "https://mmobreeder.com/fr/raids/cresselia",
-      "Comparaison entre The Three Musketeers v2.1, Sensei's New Strategy et Latin Combo V2."
+      "Comparison with The Three Musketeers v2.1, Sensei's New Strategy et Latin Combo V2."
     ],
     [
       "CALLMESENSEIX — stratégie 2025",
       "https://forums.pokemmo.com/index.php?/topic/193398-cresselia-raid-guide/",
-      "Guide communautaire plus ancien avec stratégies et compositions distinctes."
+      "An older community guide with different team compositions and strategies."
     ]
   ]
 });
@@ -588,17 +588,17 @@ CRESSELIA_DATA.team.flat().forEach(mon=>{
     if(!mon[key])continue;
     mon[key]=mon[key].replaceAll("X Sp. Def","Sp. Def").replaceAll("PV","HP")
       .replaceAll("Déf.","Def").replaceAll("Att.","Atk")
-      .replaceAll("Non imposé","Not required").replaceAll("Sans objet","No held item")
+      .replaceAll("Non imposé","Not required").replaceAll("No held item","No held item")
       .replaceAll("Libre","Flexible").replaceAll("reste","remaining")
       .replaceAll("Répartition libre en","Flexible spread across")
       .replaceAll("Nature +Attack","Attack-boosting nature")
       .replaceAll("Nature neutre pour la Sp. Def","Sp. Def-neutral nature")
       .replaceAll("Ne doit pas augmenter la Sp. Def","Must not boost Sp. Def")
       .replaceAll("Augmente la Sp. Def sans baisser la Speed","Boost Sp. Def without lowering Speed")
-      .replaceAll("Éviter les EV en Sp. Def","Avoid Sp. Def EV investment")
+      .replaceAll("Avoid Sp. Def EVs","Avoid Sp. Def EV investment")
       .replaceAll("Speed finale inférieure à 269","final Speed below 269")
       .replaceAll("Speed Verify with source","Speed to verify")
-      .replaceAll("À répartir selon rôle (source sans seuil)","Adjust to role (no source threshold)")
+      .replaceAll("Allocate for your role (source gives no benchmark)","Adjust to role (no source threshold)")
       .replaceAll("reste libre","remainder flexible")
       .replaceAll("Sp. Def 31 ;","Sp. Def 31 ;")
       .replaceAll(" sans ", " without ");
