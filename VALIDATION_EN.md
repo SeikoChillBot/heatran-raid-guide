@@ -37,3 +37,18 @@ Two types of validation are distinguished below: **static/source checks already 
 - [ ] Verify unresolved source ambiguities, especially the Sensei P4 Krookodile/Tyranitar discrepancy and Latin Combo exact builds.
 
 The source may be complete while gameplay remains untested. Archive warnings and unspecified build fields must never be silently removed.
+
+
+## V13 release consistency (October 25, 2026)
+
+- [x] All eight English HTML pages load the same V8, V9, V10, V11, V12 and V13 CSS finishing layers in the same order as the French pages.
+- [x] English versions of the V8 recent-raid history, V9 raid toolbar, V12 detailed Pokémon hover popup are loaded on the applicable pages.
+- [x] The English Heatran and Cresselia engines pass the current turn index into the shared inline navigation, with per-action build metadata for previews.
+- [x] The Halloween English engine renders the same inline Previous/Next controls for both Pumpking and other bosses, and keeps source-verified build notes.
+- [x] Home only: “Created by Seiko (Seikolito in-game)” appears; other pages omit the signature.
+- [x] English Permanent Raids uses the same animated raid den and reduced crop, with no “INDEX / 001”. Home uses full-card GIF blending and no 06/04/04 strip.
+- [x] 24 Cresselia Musketeers builds / 10 turns, 24 Sensei builds / 13 turns, 9 Halloween bosses and 228 team slots match French. Sensei battle Pokémon slot indices match; move strings correctly differ by language.
+- [x] Inline and external English JavaScript syntax checks completed and HTML asset links checked against repository files.
+
+- [ ] Real deployed GitHub Pages/Cloudflare screenshots, animation framing and mobile/browser interaction still require visual testing.
+- [ ] Source-specific gameplay and accuracy of historical strategies remain subject to PokeMMO testing.
