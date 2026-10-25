@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="robots" content="noindex,nofollow,noarchive">
+ <meta name="theme-color" content="#0c0c0e">
+ <title>adminDev · Suggestions | PokeMMO RAID ATLAS</title>
+ <link rel="stylesheet" href="../assets/raid-hub.css">
+ <link rel="stylesheet" href="../assets/raid-redesign-v6-fr-parity-7.css?v=20261025-enfinal5">
+ <link rel="stylesheet" href="../assets/raid-premium-v8.css?v=20261025-en-v13c">
+ <link rel="stylesheet" href="../assets/raid-suggestions.css?v=20261025-sug1">
+</head>
+<body class="raid-admin-page">
+ <main class="raid-admin">
+   <header class="raid-admin-top">
+     <div>
+       <span class="raid-admin-eyebrow">POKEMMO RAID ATLAS / DEVELOPER ACCESS</span>
+       <h1 class="raid-admin-title">ADMINDEV</h1>
+       <p class="raid-admin-desc">Manage community feedback for RAID ATLAS. Suggestions stay private and are only displayed after secure administrator sign-in.</p>
+     </div>
+     <a href="../index.html" class="raid-admin-btn secondary">Back to site</a>
+   </header>
+   <section class="raid-admin-panel raid-admin-login" id="raid-admin-login" aria-labelledby="raid-admin-auth-heading">
+     <h2 id="raid-admin-auth-heading">Administrator sign-in</h2>
+     <form autocomplete="off" id="raid-admin-auth">
+       <label for="raid-admin-key">Administrator key</label>
+       <input id="raid-admin-key" type="password" minlength="24" required
+         placeholder="Your Cloudflare admin secret" autocomplete="off" spellcheck="false">
+       <button class="raid-admin-btn" type="submit">View suggestions</button>
+       <p id="raid-admin-login-feedback" class="raid-admin-feedback" role="status" aria-live="polite"></p>
+     </form>
+     <p class="raid-admin-desc">This page is intentionally not linked from the public site. Its URL is not a security barrier: your admin key is required to read or manage submissions.</p>
+   </section>
+   <section class="raid-admin-panel" id="raid-admin-workspace" hidden aria-labelledby="raid-admin-suggestions-heading">
+     <div class="raid-admin-toolbar">
+       <div>
+         <span class="raid-admin-eyebrow">MODULE 01 / COMMUNITY FEEDBACK</span>
+         <h2 id="raid-admin-suggestions-heading">Suggestions</h2>
+         <span class="raid-admin-counter"><span id="raid-admin-total-count">0</span> suggestions loaded</span>
+       </div>
+       <div class="raid-admin-tools">
+         <button class="raid-admin-btn secondary" id="raid-admin-reload" type="button">Refresh</button>
+         <button class="raid-admin-btn secondary" id="raid-admin-logout" type="button">Sign out</button>
+       </div>
+     </div>
+     <p class="raid-admin-desc">Mark a suggestion as resolved to move it to the collapsible Resolved section. You can reopen it at any time, or permanently delete it after confirmation. Open suggestions cannot be deleted.</p>
+     <div class="raid-admin-subhead">
+       <h2>Open</h2>
+       <span class="raid-admin-counter" id="raid-admin-pending-count">0</span>
+     </div>
+     <div class="raid-admin-list" id="raid-admin-pending"></div>
+     <details class="raid-admin-completed">
+       <summary>Resolved suggestions (<span id="raid-admin-treated-count">0</span>)</summary>
+       <div class="raid-admin-list" id="raid-admin-treated"></div>
+     </details>
+     <button class="raid-admin-btn secondary" type="button" id="raid-admin-more" hidden style="margin-top:24px">Load more suggestions</button>
+     <p class="raid-admin-feedback" id="raid-admin-feedback" aria-live="polite" role="status"></p>
+   </section>
+ </main>
+ <script src="../assets/raid-admin-dev.js?v=20261025-en-sug1"></script>
+</body>
+</html>
