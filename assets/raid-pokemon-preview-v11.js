@@ -30,7 +30,7 @@ function init(){
   return node;
  };
  const normalize=x=>String(x??"").replace(/^\s*\d+\.\s*/,"").replace(/\s+/g," ").trim();
- const missing="Not specified dans la source";
+ const missing="Not specified in the source";
  const fields=[["Held item","item"],["Nature","nature"],["Ability","ability"],
   ["EV","ev"],["IV","iv"],["Moves","moves"]];
  function parseData(root){
@@ -55,12 +55,12 @@ function init(){
    const key=normalizeKey(row.querySelector("small")?.textContent);
    const val=normalize(row.querySelector("strong")?.textContent);
    if(!val)continue;
-   if(key.startsWith("objet"))info.item=val;
+   if(key.startsWith("item")||key.startsWith("held item")||key.startsWith("objet"))info.item=val;
    else if(key==="nature")info.nature=val;
-   else if(key==="talent")info.ability=val;
+   else if(key==="ability"||key==="talent")info.ability=val;
    else if(key==="ev")info.ev=val;
    else if(key.startsWith("iv"))info.iv=val;
-   else if(key.includes("attaqu")||key.includes("fonction"))info.moves=val;
+   else if(key.includes("move")||key.includes("attaqu")||key.includes("fonction"))info.moves=val;
   }
   if(!info.moves){
    const moves=[...root.querySelectorAll(".move-pill")].map(x=>normalize(x.textContent).replace(/^[◆✦✧⬡]\s*/,"")).filter(Boolean);
@@ -70,7 +70,7 @@ function init(){
  }
  function getData(card){
   const wrapper=card.closest("details.card,details.h25-build")||card.closest(".h25-team-build")||card;
-  // Ne jamais présenter un nom d’attaque comme une fiche Pokémon Halloween.
+  // Never show an attack name as a Pokémon build, especially in Halloween raids.
   if(card.closest(".h25-battle-grid")&&!parseData(card))return null;
   const build=parseData(card)||parseData(wrapper)||domFallback(wrapper);
   let name=normalize(build.name||build.n||"");
