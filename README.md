@@ -44,3 +44,16 @@ This is a static HTML/CSS/JavaScript project; deploy the HTML pages and the full
 Repository commits confirm source updates. They do **not** by themselves confirm a fresh Cloudflare Pages deployment or real browser/mobile testing; those should be checked after publishing.
 
 Community project, unaffiliated with PokeMMO or The Pokémon Company.
+
+
+## October 25, 2026 — French-approved visual V13 parity
+
+The English site now uses the same released cosmetic modules as the French site: `raid-premium-v8.css`, `raid-polish-v9.css`, `raid-finish-v10.css`, `raid-atmosphere-v11.css`, `raid-polish-v12.css`, and `raid-polish-v13.css`. Every public page loads them in this order, after the unchanged shared base styling.
+
+The Home page has the animated PokeMMO raid den integrated behind the Permanent Raids category artwork, no decorative 06/04/04 statistics strip, the `EXPLORE RAIDS` heading, the three most recently viewed raids, and an exclusive footer credit: **Created by Seiko (Seikolito in-game)**. That credit is not present on other pages.
+
+The Permanent Raids category banner uses the same animated GIF with the less zoomed-in square framing as the French V13 stylesheet. In battle, Pokémon illustrations have transparent/blended treatment rather than hard black image squares. Shared combat cards place **Previous turn / Next turn** directly after the four actions, replacing the redundant Pokémon jump link.
+
+Heatran, Cresselia and Halloween 2025 use English versions of the shared home/history logic, branding/active-tab styling, and detailed six-field Pokémon hover previews sourced from actual item, Nature, Ability, EV, IV and move data. Missing data are not fabricated.
+
+The English page translations and official Pokémon names remain independent of the French-language data files. Historical Halloween warnings are retained. **Technical/static verification is not a real browser screenshot or deployment confirmation.**
