@@ -118,6 +118,23 @@ function renderMechanics(app,strat){
  }
  app.append(grid)
 }
+/* Source-bound Pokémon previews: never invent missing builds. */
+function raidBuildFor(strat,owner,raw){
+ const label=String(raw||"").split(" / ")[0].trim(),roster=strat==="core"?base:video;
+ const slot=(roster[owner]||[]).findIndex(p=>p[0]===label);if(slot<0)return null;
+ const p=roster[owner][slot],alts=strat==="core"?abilities:videoAbilities,ivs=strat==="core"?ivCore:ivVideo;
+ return {name:fr(p[0]),item:fr(p[1]),nature:fr(p[2]),
+  ability:fr(alts[owner]?.[slot]||"Not specified"),ev:fr(p[3]),
+  iv:fr(ivs[owner]?.[slot]||"Not specified"),
+  moves:p[4].split(" / ").map(fr),source:strat==="core"?"Crimson Core":"Beorns / JinxedBoon"};
+}
+function raidCloudBuild(owner,raw){
+ const label=String(raw||"").split(" / ")[0].trim();
+ const pk=(cloudTeams[owner]||[]).find(p=>p[0]===label);if(!pk)return null;
+ return {name:fr(pk[0]),item:fr(pk[1]),nature:fr(pk[2]),iv:fr(pk[3]),
+  ev:"EVs not specified by source · Final stats: "+fr(pk[4]),ability:fr(pk[6]),
+  moves:pk[5].split(" / ").map(fr),source:"Cloud Five v0.74"};
+}
 function cloudRender(){let app=$('app');app.replaceChildren();buttons($('tabs'),[['⚔ Battle','battle'],['◉ Pokémon','pokemon'],['✓ Preparation','checklist'],['ⓘ Mechanics','mechanics']],tab,v=>{tab=v;render()});$('players').hidden=tab==='mechanics';buttons($('players'),[0,1,2,3].map(i=>['P'+(i+1),i]),player,v=>{player=v;render()});$('focus').textContent='Cloud Five v0.74 · Player '+(player+1);const cloudCaution='Cloud Five v0.74 · The Council / Cadoiz. The source guide is still being finalized; watch RNG, knockout timing and replacement options.';if(tab==='battle'){
  app.append(RaidAtlasComponents.battleIntro('Heatran'));
  app.append(viewCheckbox('Full view · show all 11 turns',fullView,v=>{fullView=v;localStorage.setItem('pokemmo-en-full-view',v?'1':'0');render()}));
@@ -130,15 +147,15 @@ function cloudRender(){let app=$('app');app.replaceChildren();buttons($('tabs'),
   const help=document.createElement('p');help.textContent=cloudNotes[n];notes.append(h,help);
   const phase=document.createElement('section');if(fullView)phase.className='turn-section';
   RaidAtlasComponents.battleTurn({target:phase,index:n,total:cloudTurns.length,title:'Heatran : '+cloudRemaining[n]+' estimated HP remaining',
-   actions:cloudTurns[n].map(([poke,move])=>({name:fr(poke),move:fr(move),sprite:poke==='—'?null:sprite(poke)})),
+   actions:cloudTurns[n].map(([poke,move],owner)=>({name:fr(poke),move:fr(move),sprite:poke==='—'?null:sprite(poke),build:raidCloudBuild(owner,poke)})),
    selected:player,advice:notes,
    preflight:n===0?(()=>{const panel=document.createElement('section');panel.className='raid-preflight';panel.textContent=cloudCaution;return panel})():null,
-   onPokemon:()=>{tab='pokemon';render()},
+   onTurnChange:fullView?null:i=>{turn=i;render()},
    copyText:'Cloud Five Heatran T'+(n+1)+' : '+cloudTurns[n].map(([p,m],i)=>'P'+(i+1)+' '+fr(p)+' > '+fr(m)).join(' ; '),
    copy:(button,value)=>copyWithFeedback(button,value)});
   wrap.append(phase);
  }
- if(!fullView)app.append(RaidAtlasComponents.phaseNav({current:turn,total:cloudTurns.length,onChange:i=>{turn=i;render()}}));
+ 
 }else if(tab==='pokemon'){
  app.append(RaidAtlasComponents.feature({player,boss:'Heatran',artwork:'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/224.png'}));
  app.append(RaidAtlasComponents.pokemonIntroNote(cloudCaution));
@@ -178,16 +195,16 @@ function cloudRender(){let app=$('app');app.replaceChildren();buttons($('tabs'),
  core:{4:["If rain has ended, use Rain Dance; otherwise Hydro Pump.",null,null,null],5:["After Jolteon enters, ideally before the 25% HP threshold.",null,null,null]},
  video:{4:["Enter after Starmie faints.", "Switch in Politoed if rain is absent.", "With Flygon alive: Earth Power. After it faints: use Politoed if rain is absent.", "With Flygon alive: Earth Power. After it faints: use Politoed if rain is absent."],5:["Bring in Jolteon after Kingdra faints; aim for around 30% boss HP.", "Bring in Kingdra after Politoed faints.", "Without rain: Politoed/Drizzle and Weather Ball. With rain: Kingdra/Brine.", "Without rain: Politoed/Drizzle and Weather Ball. With rain: Kingdra/Brine."]}
  };const renderTurn=(phase,target)=>{const acts=r[phase].map(([poke,move],i)=>({
- name:fr(poke),move:fr(move),sprite:sprite(poke.split(' / ')[0]),note:conditionalActions[strat]?.[phase]?.[i]||''
+ name:fr(poke),move:fr(move),sprite:sprite(poke.split(' / ')[0]),build:raidBuildFor(strat,i,poke),note:conditionalActions[strat]?.[phase]?.[i]||''
 }));
 const warning=strat==='video'&&phase>=4?'Approximate phase: adapt to current Pokémon, weather and knockouts.':'';
 RaidAtlasComponents.battleTurn({
  target,index:phase,total:r.length,title:fr(phaseNames[strat][phase]),actions:acts,selected:player,
  preflight:phase===0?raidPreflightBlock(strat):null,banner:warning,advice:raidTurnAdvice(turnGuidance[strat][phase]),
- onPokemon:()=>{tab='pokemon';render()},
+ onTurnChange:fullView?null:i=>{turn=i;render()},
  copyText:'Heatran T'+(phase+1)+' : '+r[phase].map(([poke,move],i)=>'P'+(i+1)+' '+fr(poke)+' > '+fr(move)).join(' ; '),
  copy:(button,value)=>copyWithFeedback(button,value)
-})};if(fullView){r.forEach((_,i)=>{let section=document.createElement('section');section.className='turn-section';renderTurn(i,section);allWrap.append(section)})}else{renderTurn(turn,allWrap)}let pn=document.createElement('div');pn.className='phase-nav';let prev=document.createElement('button');prev.textContent='← Previous';prev.disabled=turn===0;prev.onclick=()=>{turn--;render()};let next=document.createElement('button');next.textContent='Next phase →';next.disabled=turn===5;next.onclick=()=>{turn++;render()};pn.append(prev,next);if(!fullView)app.append(pn);}else if(tab==='pokemon'){let feature=document.createElement('section');feature.className='pokemon-feature-banner';feature.innerHTML='<div><span class="eyebrow">POKÉMON BUILDS</span><h2>Prepare your team</h2><p>Held items, abilities, EVs, priority IVs and moves for player '+(player+1)+'. Expand a card for the complete build.</p></div><img class="feature-octillery" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/224.png" alt="" loading="lazy">';app.append(feature);let sourcing=document.createElement('p');sourcing.className='build-source-note';sourcing.textContent=strat==='core'?'Crimson Core : natures, EV, attaques et objets selon le guide d’origine. Les IV notés « référence complémentaire Beorns » sont des seuils proposés par l’autre source et ne sont pas imposés par Crimson Core.':'Beorns / JinxedBoon : variante vidéo. Les éléments absents du PDF pour Bekipan J1 sont indiqués comme propositions ; les EV ou attaques expérimentaux sont signalés séparément.';app.append(sourcing);app.append(viewCheckbox('Expand all · show six builds',expandAll,v=>{expandAll=v;localStorage.setItem('pokemmo-en-expand-all',v?'1':'0');render()}));team[player].forEach((p,i)=>{
+})};if(fullView){r.forEach((_,i)=>{let section=document.createElement('section');section.className='turn-section';renderTurn(i,section);allWrap.append(section)})}else{renderTurn(turn,allWrap)}}else if(tab==='pokemon'){let feature=document.createElement('section');feature.className='pokemon-feature-banner';feature.innerHTML='<div><span class="eyebrow">POKÉMON BUILDS</span><h2>Prepare your team</h2><p>Held items, abilities, EVs, priority IVs and moves for player '+(player+1)+'. Expand a card for the complete build.</p></div><img class="feature-octillery" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/224.png" alt="" loading="lazy">';app.append(feature);let sourcing=document.createElement('p');sourcing.className='build-source-note';sourcing.textContent=strat==='core'?'Crimson Core : natures, EV, attaques et objets selon le guide d’origine. Les IV notés « référence complémentaire Beorns » sont des seuils proposés par l’autre source et ne sont pas imposés par Crimson Core.':'Beorns / JinxedBoon : variante vidéo. Les éléments absents du PDF pour Bekipan J1 sont indiqués comme propositions ; les EV ou attaques expérimentaux sont signalés séparément.';app.append(sourcing);app.append(viewCheckbox('Expand all · show six builds',expandAll,v=>{expandAll=v;localStorage.setItem('pokemmo-en-expand-all',v?'1':'0');render()}));team[player].forEach((p,i)=>{
  const pokemon={
   name:fr(p[0]),item:fr(p[1]),nature:fr(p[2]),
   ability:fr((strat==='core'?abilities:videoAbilities)[player][i]),
