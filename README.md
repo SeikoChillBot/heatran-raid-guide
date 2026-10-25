@@ -57,3 +57,15 @@ The Permanent Raids category banner uses the same animated GIF with the less zoo
 Heatran, Cresselia and Halloween 2025 use English versions of the shared home/history logic, branding/active-tab styling, and detailed six-field Pokémon hover previews sourced from actual item, Nature, Ability, EV, IV and move data. Missing data are not fabricated.
 
 The English page translations and official Pokémon names remain independent of the French-language data files. Historical Halloween warnings are retained. **Technical/static verification is not a real browser screenshot or deployment confirmation.**
+
+
+## French V14 design parity — October 25, 2026
+
+The approved French visual corrections have been applied to the English edition without replacing translated tactics:
+
+- `assets/raid-polish-v14.css`: transparent Pokémon artwork in battle cards and a subtle, non-zoomed adjustment to the animated raid den crop.
+- `assets/raid-components.js`: the shared action renderer upgrades PokeAPI sprites to official high-resolution transparent artwork. This is the default for future guides using the shared components.
+- `assets/raid-premium-v8.js`: dynamically inserted Halloween / future action cards receive the same transparent artwork cleanup.
+- All eight English HTML pages load the final V14 stylesheet; English interface copy and official English move/item/species names remain intact.
+- Every page footer includes `Created by Seiko (Seikolito in-game)`, mirroring the French attribution.
+- Static validations passed: scripts compile, 8 English pages include V14, Cresselia and Halloween build/turn counts match French. Real browser rendering and published site build still require visual acceptance testing.
