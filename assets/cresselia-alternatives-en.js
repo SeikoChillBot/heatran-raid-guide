@@ -72,7 +72,7 @@ window.CresseliaAlternatives=Object.freeze({
           "ev": "252 Sp. Atk / 252 Sp. Def",
           "iv": "HP 31 / Sp. Atk 31 / X Sp. Def 31 / Spe 31",
           "attacks": "Brine",
-          "note": "Table des builds : aucune attaque indiquée. Rotation T13 : Brine ; conflit de présentation entre tableau et rotation à confirmer dans le guide d’origine."
+          "note": "Build table lists no move, but the T13 rotation specifies Brine. This discrepancy must be checked against the original guide."
         }
       ],
       [
@@ -197,7 +197,7 @@ window.CresseliaAlternatives=Object.freeze({
           "ev": "252 HP / 252 Sp. Def",
           "iv": "X Sp. Def 31",
           "attacks": "Captivate / Knock Off",
-          "note": "Utilisé au T9–T11 pour Captivate puis Knock Off."
+          "note": "Used on turns 9–11 for Captivate, then Knock Off."
         },
         {
           "n": "Tyranitar",
@@ -265,7 +265,7 @@ window.CresseliaAlternatives=Object.freeze({
           "ev": "252 HP / 252 Sp. Def",
           "iv": "HP 31 / X Sp. Def 31",
           "attacks": "Mud Sport / Seismic Toss",
-          "note": "Dans des échanges ultérieurs du forum, une Iron Ball est discutée : contrôle de version indispensable."
+          "note": "Later forum messages discuss an Iron Ball: verify the correct version before building."
         },
         {
           "n": "Krookodile",
@@ -276,7 +276,7 @@ window.CresseliaAlternatives=Object.freeze({
           "ev": "Not specified in source dans cette section",
           "iv": "HP 31 / Atk 31 / X Sp. Def 31",
           "attacks": "Assurance",
-          "note": "Avertissement source : la dernière colonne est intitulée Tyranitar mais représente Krookodile dans l'illustration et la rotation. Identification à confirmer avant élevage."
+          "note": "Source inconsistency: the last column is labeled Tyranitar but shows Krookodile in the artwork and rotation. Confirm the Pokémon before breeding."
         }
       ]
     ],
