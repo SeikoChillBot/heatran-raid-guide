@@ -1,6 +1,6 @@
-/* RAID ATLAS FR — composants canoniques des fiches Heatran et Cresselia.
+/* RAID ATLAS FR — canonical modules for Heatran and Cresselia.
  * Les moteurs gardent exclusivement leur stratégie et les données Pokémon.
- * Tous les futurs raids utilisent ces fonctions plutôt que fabriquer leurs cartes.
+ * Use these functions for all new raids instead of duplicating markup.
  */
 (function(global){
 "use strict";
@@ -13,7 +13,7 @@ function checkbox(label,checked,change){
 }
 function battleIntro(boss){
  const section=el("div","battle-intro"),inner=el("div");
- inner.append(el("h2",null,"Battle strategy"),el("p",null,"Follow the turn-by-turn plan to defeat "+boss+". Each turn lists all four players' actions."));
+ inner.append(el("h2",null,"Battle strategy"),el("p",null,"Follow the turn-by-turn plan to defeat "+boss+". Each turn shows the actions of all four players."));
  section.append(inner);return section;
 }
 function phaseSelect({labels,current,onChange}){
@@ -23,11 +23,31 @@ function phaseSelect({labels,current,onChange}){
  option.value=String(i);option.selected=i===current;sel.append(option);});
  sel.addEventListener("change",()=>onChange(Number(sel.value)));box.append(lab,sel);return box;
 }
+/* Métadonnées exactes pour les aperçus V12 (sans inventer de builds).
+   Data conservées of la carte utilisée par le moteur et accessibles aux
+   futures fiches via action.build ou pokemon du composant buildCard. */
+function decoratePreview(node,p){
+ if(!p||!node)return node;
+ const detail={
+   name:p.name||p.n||"",
+   item:p.item||"",
+   nature:p.nature||"",
+   ability:p.ability||p.talent||"",
+   ev:p.ev||"",
+   iv:p.iv||"",
+   moves:Array.isArray(p.moves)?p.moves:(p.attacks||p.moves||"").split(/\s*[\/·]\s*/).filter(Boolean),
+   source:p.source||"",
+   note:p.note||""
+ };
+ node.dataset.raidBuild=JSON.stringify(detail);
+ return node;
+}
 function actionGrid(actions,selected){
  const grid=el("div","battle-grid");
  actions.forEach((a,i)=>{
   const card=el("div","card"+(i===selected?" selected":""));
-  card.append(el("small",null,"P"+(i+1)+(i===selected?" · YOUR ACTION":"")));
+  if(a.build)decoratePreview(card,a.build);
+  card.append(el("small",null,"P"+(i+1)+(i===selected?" · VOTRE ACTION":"")));
   const line=el("div","poke-row"),info=el("div","poke-text"),name=el("div","poke-name",a.name),move=el("div","move",a.move);
   info.append(name,move);
   if(a.note)info.append(el("small","raid-when",a.note));
@@ -42,24 +62,29 @@ function copyButton(label,copyText,copy){
  const button=el("button","copy-turn-action",label||"Copy this turn");button.type="button";
  button.addEventListener("click",()=>copy(button,copyText));return button;
 }
-function battleTurn({target,index,total,title,actions,selected,preflight,banner,notes,advice,onPokemon,copyText,copy}){
+function battleTurn({target,index,total,title,actions,selected,preflight,banner,notes,advice,onPokemon,onTurnChange,copyText,copy}){
  const panel=target||el("section","turn-section");
- panel.classList.add("turn-panel");panel.append(el("div","section-kicker","Phase "+(index+1)+" sur "+total));
+ panel.classList.add("turn-panel");panel.append(el("div","section-kicker","Turn "+(index+1)+" of "+total));
  panel.append(el("h2",null,title));
  if(preflight)panel.append(preflight);
  if(banner)panel.append(el("p","raid-conditional-banner",banner));
  const copyEl=copyButton("Copy this turn",copyText,copy);
  panel.append(copyEl,actionGrid(actions,selected));
- if(onPokemon){
-  const jump=el("button","team-link","View all 6 Pokémon for P"+(selected+1)+" →");
-  jump.type="button";jump.addEventListener("click",onPokemon);panel.append(jump);
+ // Shared raid rule: turn controls replace the redundant "View 6 Pokémon"
+ // button, which is already available in the permanent Pokémon tab.
+ // Place them immediately after the actions, not at the end of the guide.
+ if(typeof onTurnChange==="function"){
+  const nav=phaseNav({current:index,total,onChange:onTurnChange});
+  nav.classList.add("raid-inline-turn-nav");
+  nav.setAttribute("aria-label","Go to previous or next turn");
+  panel.append(nav);
  }
  if(notes)panel.append(notes);
  if(advice)panel.append(advice);
  return panel;
 }
 function phaseNav({current,total,onChange}){
- const row=el("div","phase-nav"),back=el("button",null,"← Previous"),next=el("button",null,"Next phase →");
+ const row=el("div","phase-nav raid-inline-turn-nav"),back=el("button",null,"← Previous turn"),next=el("button",null,"Next turn →");
  back.type=next.type="button";
  back.disabled=current<=0;next.disabled=current>=total-1;
  back.onclick=()=>onChange(current-1);next.onclick=()=>onChange(current+1);
@@ -68,13 +93,14 @@ function phaseNav({current,total,onChange}){
 function feature({player,boss,artwork}){
  const section=el("section","pokemon-feature-banner"),copy=el("div");
  copy.append(el("span","eyebrow","POKÉMON BUILDS"),el("h2",null,"Prepare your team"),
- el("p",null,"Held items, abilities, EVs, priority IVs and moves for player "+(player+1)+". Expand any card to view the complete build."));
+ el("p",null,"Held items, abilities, EVs, priority IVs and moves for player "+(player+1)+". Expand a card to view the complete build."));
  section.append(copy);
  if(artwork){const img=el("img","feature-octillery");img.alt="";img.loading="lazy";img.src=artwork;section.append(img);}
  return section;
 }
 function buildCard({pokemon,index=0,expanded=false,onToggle,copy}){
  const p=pokemon,card=el("details","card");
+ decoratePreview(card,p);
  card.open=expanded;
  if(onToggle)card.addEventListener("toggle",()=>onToggle(card));
  const summary=el("summary"),row=el("span","poke-row"),info=el("span","poke-text");
@@ -112,8 +138,9 @@ function buildCard({pokemon,index=0,expanded=false,onToggle,copy}){
  b.onclick=()=>copy(b,p);
  card.append(b);return card;
 }
-function prepCard({name,item,sprite,spriteUrl,checks}){
+function prepCard({name,item,sprite,spriteUrl,checks,build}){
  const card=el("div","prep-card"),row=el("div","poke-row");
+ if(build)decoratePreview(card,build);
  let img=sprite;
  if(!img&&spriteUrl){img=el("img","sprite");img.src=spriteUrl;img.loading="lazy";img.alt="";}
  if(img)row.append(img);
@@ -135,6 +162,6 @@ function progressCard(id,title){
 }
 function pokemonIntroNote(text){return el("p","build-source-note",text);}
 global.RaidAtlasComponents=Object.freeze({
- checkbox,battleIntro,phaseSelect,actionGrid,battleTurn,phaseNav,feature,buildCard,prepCard,progressCard,pokemonIntroNote
+ checkbox,battleIntro,phaseSelect,actionGrid,battleTurn,phaseNav,feature,buildCard,prepCard,progressCard,pokemonIntroNote,decoratePreview
 });
 })(window);
