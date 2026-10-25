@@ -29,7 +29,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "id": 555,
         "item": "Bandeau Choix",
         "talent": "Sans Limite",
-        "nature": "Nature +Attaque",
+        "nature": "Attack-boosting nature (source does not specify which)",
         "iv": "Att. 31",
         "ev": "252 Att. ; Vitesse finale inférieure à 269 ; reste Déf./Att. Spé.",
         "attacks": "Boutefeu",
@@ -55,7 +55,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. Spé. 31 ; Déf. Spé. 31 ; Vit. 0–1",
         "ev": "6 PV ; 252 Att. Spé. ; 252 Déf. Spé.",
         "attacks": "Rune Protect · Lance-Boue · Saumure",
-        "note": "Rune Protect au T6 puis Lance-Boue au T7. L'IV Vitesse 0–1 est intentionnel."
+        "note": "Safeguard on turn 6, then Mud Sport on turn 7. The 0–1 Speed IV is intentional."
       },
       {
         "n": "Pingoléon",
@@ -121,7 +121,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "talent": "Battant",
         "nature": "Modeste / Doux",
         "iv": "PV 31 ; Att. Spé. 31 ; Déf. Spé. 31",
-        "ev": "6 PV ; 252 Att. Spé. ; 252 Déf. Spé. (Vitesse à vérifier)",
+        "ev": "6 HP / 252 Sp. Atk / 252 Sp. Def (Speed: verify with source)",
         "attacks": "Saumure",
         "note": "Turns 6–7. Must outspeed Tyranitar at −2 Speed, as specified by the source."
       },
@@ -237,7 +237,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Att. Spé. 31 ; Vit. 31",
         "ev": "252 Att. Spé. ; 120 Vit. ; reste libre",
         "attacks": "Châtiment",
-        "note": "T4 : attaque spéciale de transition."
+        "note": "Turn 4: transitional special attack."
       },
       {
         "n": "Sidérella",
@@ -259,7 +259,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "Allocate for your role (source gives no benchmark)",
         "ev": "Répartition libre en Att./Déf./Att. Spé.",
         "attacks": "Air Veinard",
-        "note": "T6 : renouvelle la protection contre les coups critiques."
+        "note": "Turn 6: renews protection against critical hits."
       },
       {
         "n": "Crocorible",
@@ -270,7 +270,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
         "iv": "PV 31 ; Att. 31 ; Déf. Spé. 31",
         "ev": "6 PV ; 252 Att. ; 252 Déf. Spé.",
         "attacks": "Assurance",
-        "note": "T7 : dégâts physiques de transition."
+        "note": "Turn 7: transitional physical damage."
       }
     ]
   ],
@@ -411,7 +411,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
           "Air Veinard"
         ]
       ],
-      "info": "Le premier Milobellus pose Rune Protect, le second utilise Saumure ; Colhomard lance son objet, Lippoutou renforce la protection contre les critiques."
+      "info": "The first Milotic uses Safeguard, the second uses Brine; Crawdaunt flings its held item, while Jynx refreshes critical-hit protection."
     },
     {
       "hp": "≈ 33 %",
@@ -521,7 +521,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
     ],
     [
       "Distorsion · 65 %",
-      "L’ordre de Vitesse change : certains réglages apparemment étranges sont volontaires."
+      "Speed ordering changes: some unusual-looking EV or IV choices are deliberate."
     ],
     [
       "Bascule de l’alternance · 50 %",
@@ -549,7 +549,7 @@ const CRESSELIA_DATA=window.RaidAtlasEN.deep({
     ],
     [
       "Protection et coups critiques",
-      "Rune Protect et Air Veinard ont des fonctions distinctes. Ne pas remplacer ces turns par de simples attaques."
+      "Safeguard and Lucky Chant serve different purposes. Do not replace those turns with attacks."
     ],
     [
       "Pokémon additionnels",
@@ -592,12 +592,12 @@ CRESSELIA_DATA.team.flat().forEach(mon=>{
       .replaceAll("Libre","Flexible").replaceAll("reste","remaining")
       .replaceAll("Répartition libre en","Flexible spread across")
       .replaceAll("Nature +Attack","Attack-boosting nature")
-      .replaceAll("Nature neutre pour la Sp. Def","Sp. Def-neutral nature")
-      .replaceAll("Ne doit pas augmenter la Sp. Def","Must not boost Sp. Def")
-      .replaceAll("Augmente la Sp. Def sans baisser la Speed","Boost Sp. Def without lowering Speed")
+      .replaceAll("Nature neutral to Sp. Def","Sp. Def-neutral nature")
+      .replaceAll("Must not raise Sp. Def","Must not boost Sp. Def")
+      .replaceAll("Raises Sp. Def without lowering Speed","Boost Sp. Def without lowering Speed")
       .replaceAll("Avoid Sp. Def EVs","Avoid Sp. Def EV investment")
       .replaceAll("Speed finale inférieure à 269","final Speed below 269")
-      .replaceAll("Speed Verify with source","Speed to verify")
+      .replaceAll("Speed benchmark: verify with source","Speed to verify")
       .replaceAll("Allocate for your role (source gives no benchmark)","Adjust to role (no source threshold)")
       .replaceAll("reste libre","remainder flexible")
       .replaceAll("Sp. Def 31 ;","Sp. Def 31 ;")
@@ -617,7 +617,7 @@ const STRATS={musketeers:{...CRESSELIA_DATA,id:'musketeers',title:'The Three Mus
 const $=id=>document.getElementById(id);
 const ST={strategy:"musketeers",player:0,tab:"combat",turn:0,all:false,expand:false};
 function current(){return STRATS[ST.strategy]||STRATS.musketeers;}
-function strategyData(id){const row=STRATS[id]||STRATS.musketeers;return {...row,mechanics:CRESSELIA_DATA.mechanics,sources:row.sources||[[row.title,row.source,row.brief||"Guide source"]]};}
+function strategyData(id){const row=STRATS[id]||STRATS.musketeers;return {...row,mechanics:CRESSELIA_DATA.mechanics,sources:row.sources||[[row.title,row.source,row.brief||"Original guide"]]};}
 function sourceNotice(target){const row=current();if(ST.strategy==="musketeers")return;const box=document.createElement("aside");box.className="raid-source-notice";box.textContent=row.warning||row.brief||"";target.append(box);}
 function sourceLink(target){const a=document.createElement("a");a.className="raid-source-link";a.href=current().source;a.target="_blank";a.rel="noopener noreferrer";a.textContent=ST.strategy==="latin"?"Watch the original Latin Combo V2 video":"Read Sensei's original guide";target.append(a);}
 function selectStrategy(id){ST.strategy=id;D=strategyData(id);ST.turn=0;ST.tab="combat";ST.all=false;ST.expand=false;render();}
@@ -738,7 +738,7 @@ const description=document.createElement("p");description.textContent="Selected 
 links.append(section,description);
 for(const entry of D.sources||[]){
  const p=document.createElement("p"),a=document.createElement("a"),sub=document.createElement("small");
- a.href=entry[1]||"#";a.textContent=entry[0]||"Guide source";a.target="_blank";a.rel="noopener noreferrer";
+ a.href=entry[1]||"#";a.textContent=entry[0]||"Original guide";a.target="_blank";a.rel="noopener noreferrer";
  sub.textContent=entry[2]||"";p.append(a,document.createElement("br"),sub);links.append(p);
 }
 a.append(links);
