@@ -69,3 +69,7 @@ The approved French visual corrections have been applied to the English edition 
 - All eight English HTML pages load the final V14 stylesheet; English interface copy and official English move/item/species names remain intact.
 - Every page footer includes `Created by Seiko (Seikolito in-game)`, mirroring the French attribution.
 - Static validations passed: scripts compile, 8 English pages include V14, Cresselia and Halloween build/turn counts match French. Real browser rendering and published site build still require visual acceptance testing.
+
+
+## V15 — strategy and author attribution
+The French site is the product baseline. All raid and event pages now use the same `assets/raid-strategy-sources-v15.js` and `.css` to show an accessible expandable source and author-credit panel at the bottom. The panel follows the selected strategy/boss only; use `window.RAID_ATLAS_SOURCE_CONFIG` on future guide pages. Website creator credit is separate from the original strategy authors. Cloud Five's original link is not verified and must not be invented. Detailed implementation notes live in `SeikoChillBot/GPT-DevSecret-Memory-/projects/POKEMMO_RAID_ATLAS.md`.
