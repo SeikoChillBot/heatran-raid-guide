@@ -1,58 +1,39 @@
-# English Raid Atlas — acceptance checklist
+# RAID ATLAS EN — Validation and parity checklist
 
-Synced with the French prototype on October 24, 2026. Redeploy all four HTML files and the whole `assets/` folder on Cloudflare Pages before browser testing. These boxes are intentionally left unchecked until a real browser test.
+Checked against `SeikoChillBot/pokemmo-raid-guide-fr` on **October 25, 2026**.
 
-## Raid Atlas design and hierarchy
-- [ ] Approved graphite/white/red design matches the French site; this is not a separate redesign.
-- [ ] Home has the Heatran hero and exactly four event categories, not the permanent raid roster.
-- [ ] Permanent Raids has six Pokémon dossier cards with the same destinations.
-- [ ] Coming Soon updates title, art and back link for each event query.
-- [ ] Heatran keeps its familiar tabs, four players, strategies, navigation and copying controls.
-- [ ] Check 390px, 760px and desktop widths for overlapping Pokémon artwork and card layouts.
-- [ ] Raid Atlas CSS loads after legacy styles, without returning to the earlier blue background.
-- [ ] Design Lab remains a separate visual study, not the public homepage.
+Two types of validation are distinguished below: **static/source checks already completed** and **browser / game checks still requiring execution**. A successful GitHub push does not establish that Cloudflare Pages is deployed.
 
-## Home and raid index
-- [ ] Four event links work: Permanent Raids, Halloween, Christmas and Lunar New Year.
-- [ ] Pokémon art is sharp and properly cropped.
-- [ ] Labels, cards and typography align on mobile and desktop.
-- [ ] Six permanent raids are listed; Heatran works and five show Coming Soon.
-- [ ] Placeholder pages return to their correct parent category.
+## Static checks completed
 
-## Heatran navigation
-- [ ] All breadcrumbs Home → Permanent Raids → Heatran are navigable.
-- [ ] No duplicate back button sits directly below the Heatran breadcrumbs.
-- [ ] Original strategy sources open in a new tab.
+- [x] All eight public French-page equivalents are in the English repository: Home, Permanent Raids, Heatran, Cresselia, Halloween category, Halloween 2025 category, Halloween 2025 raid detail and Coming Soon.
+- [x] The French V6 visual stylesheet set is copied into seven byte-preserving English CSS parts and linked from all eight pages.
+- [x] Heatran, Cresselia and Halloween 2025 raid details load the shared V7 compact sticky control panel (Strategy, P1–P4 and navigation; Collapse / Expand).
+- [x] Cresselia: The Three Musketeers = 24 builds, 10 turns; Sensei / DoubleDude = 24 builds, 13 turns; Latin Combo V2 = video reference for 12 turns. The last is not misrepresented as 24 verified builds.
+- [x] Halloween 2025: same nine bosses and same 228 documented roster positions as French repository.
+- [x] Official Pokémon move/item/Ability/Nature/species translation dictionary uses PokéAPI FR and EN naming; EV/IV notation normalized to English.
+- [x] Halloween 2025 archive status is prominently described as “Likely outdated” in the English pages.
+- [x] All local linked public HTML and asset paths checked against tracked repository files; no missing references found.
+- [x] Inline page scripts, external JavaScript modules and the CSS wrappers passed syntax checks.
+- [x] English accessible labels, page descriptions, boss locations, mode names, source warnings and remaining build notes reviewed.
 
-## Battle and strategy selection
-- [ ] Switching Crimson Core and Beorns video updates battle actions, notes and selected strategy.
-- [ ] Crimson Core requires Magmortar to Heatran's right without requiring Torkoal on the left.
-- [ ] Beorns requires Magmortar present but does not invent a mandatory side from the PDF.
-- [ ] Six commented phases are visible for each of the two strategies.
-- [ ] Beorns video turn 2 uses P1 Pelipper/P2 Gliscor/P3–4 Nidoking; turn 3 uses two Octillery/two Xatu.
-- [ ] Beorns video variant is not merged with the updated Xatu + Pelipper PDF variant.
-- [ ] Crimson turn 2 explains that Roar may force a switch without four second-wave KOs.
-- [ ] Beorns turns 5–6 provide conditional player-specific notes for rain, KOs and remaining Pokémon.
-- [ ] Full six-turn view and single-phase view navigate correctly.
+## Browser acceptance — still to confirm after deployment
 
-## Pokémon builds and preparation
-- [ ] Each of four players can view six builds and use Expand all.
-- [ ] Items, natures, abilities, EVs, priority IVs, moves and alternatives appear in English.
-- [ ] Pelipper, Kingdra, Politoed and Flygon IVs distinguish confirmed and supplementary source advice.
-- [ ] Unconfirmed P1 Pelipper video EVs/IVs/nature are labeled; P2/P4 Pelipper requirements stay distinct.
-- [ ] Crimson P3 Xatu permits any nature with high SpD preferred.
-- [ ] Beorns P1 Starmie has Modest/Rash/Mild and 252 SpA/252 SpD.
-- [ ] Beorns P1 Kingdra has 252 SpA/252 SpD baseline; the 252/64/192 Sniper/Splash Plate test is optional.
-- [ ] Preparation checklist selection persists across tabs.
-- [ ] Beorns field HM options are expandable and not mistaken for battle moves.
+- [ ] Home boss art carousel auto-rotates through six bosses; Back/Next, pause on hover, and reduced-motion settings work.
+- [ ] Home, Permanent Raids, Halloween and Coming Soon links navigate to the expected pages.
+- [ ] Compare French and English screenshots at desktop widths and at 920 px, 640 px and 365 px; verify readable cards and artwork clipping.
+- [ ] Heatran: switching Crimson Core, Beorns / JinxedBoon and Cloud Five changes all 4-player battle actions, build cards, phases and checklists without visual divergence.
+- [ ] Heatran: Copy Turn, Copy Build, Full View, previous/next and all four shared tabs function correctly.
+- [ ] Cresselia: switching all three strategies updates turn counts and data correctly; no missing tabs, crashes or French move names.
+- [ ] Cresselia: P1–P4 changes roster details; Sensei's 13-turn sequence follows the source and the Latin Combo incomplete-source notice is visible.
+- [ ] Halloween 2025: all nine boss routes load, including Pumpking Easy/Hard, Darkrai 4★/5★, and proposed-build warnings.
+- [ ] V7 raid command panel remains sticky without hiding the guide; Collapse hides all its controls and Expand restores them, on mobile as well as desktop.
+- [ ] Clipboard, player role highlight and preparation checklist persistence work as intended.
+- [ ] Confirm the live Cloudflare deployment uses the same commit/version as GitHub; do not assume automatic deployment.
 
-## Mechanics and copying
-- [ ] All six HP thresholds and key effects (Roar, Defog, rain, Fake Tears, Brine) are explained.
-- [ ] Two strategy comparison cards show which strategy is selected.
-- [ ] All twelve shared mechanic cards remain present.
-- [ ] Copy this turn and Copy build contain English Pokémon and move names.
-- [ ] Copy-success feedback appears and resets.
-- [ ] Mobile controls remain accessible without hidden text or overflow.
-- [ ] Pre-battle reset messages differ correctly by source and do not claim a false Beorns side requirement.
+## In-game verification — not claimed
 
-Static and simulated DOM tests are documented in the accompanying README. They do not replace real-world mobile/desktop checks or live raid testing.
+- [ ] Test actual PokeMMO moves, abilities, item interactions, target selection, Speed order, boss HP thresholds and turn order against current game mechanics.
+- [ ] Verify unresolved source ambiguities, especially the Sensei P4 Krookodile/Tyranitar discrepancy and Latin Combo exact builds.
+
+The source may be complete while gameplay remains untested. Archive warnings and unspecified build fields must never be silently removed.
