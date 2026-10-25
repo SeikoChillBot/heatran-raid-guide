@@ -7,6 +7,8 @@
 "use strict";
 const official=global.RaidAtlasOfficialNames||{};
 const exact=new Map(Object.entries(official));
+exact.set("pointe poison","Poison Barb");
+exact.set("baie pommo","Apicot Berry");
 const terms=[...exact.entries()].filter(([fr,en])=>fr!==en&&fr.length>=4).sort((a,b)=>b[0].length-a[0].length);
 const reEscape=x=>x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
 function term(value){
@@ -18,14 +20,14 @@ function term(value){
    const re=new RegExp("(^|[^\\p{L}])("+reEscape(fr)+")(?=$|[^\\p{L}])","giu");
    s=s.replace(re,(_,prefix)=>{const mark="§§RAIDTERM"+saves.length+"§§";saves.push(en);return prefix+mark;});
  }
- s=s.replace(/§§RAIDTERM(\\d+)§§/g,(_,n)=>saves[Number(n)]);
+ s=s.replace(/§§RAIDTERM(\d+)§§/g,(_,n)=>saves[Number(n)]);
  return s;
 }
 const stats=[
- [/\\bPV\\b/g,"HP"],[/\\bAtt\\. Spé\\./g,"Sp. Atk"],[/\\bDéf\\. Spé\\./g,"Sp. Def"],
- [/\\bAtt\\./g,"Atk"],[/\\bDéf\\./g,"Def"],[/\\bVit\\./g,"Spe"],
- [/\\bAttaque Spéciale\\b/gi,"Special Attack"],[/\\bDéfense Spéciale\\b/gi,"Special Defense"],
- [/\\bDéfense\\b/gi,"Defense"],[/\\bVitesse\\b/gi,"Speed"],[/\\bAttaque\\b/gi,"Attack"]
+ [/\bPV\b/g,"HP"],[/\bAtt\. Spé\./g,"Sp. Atk"],[/\bDéf\. Spé\./g,"Sp. Def"],
+ [/\bAtt\./g,"Atk"],[/\bDéf\./g,"Def"],[/\bVit\./g,"Spe"],
+ [/\bAttaque Spéciale\b/gi,"Special Attack"],[/\bDéfense Spéciale\b/gi,"Special Defense"],
+ [/\bDéfense\b/gi,"Defense"],[/\bVitesse\b/gi,"Speed"],[/\bAttaque\b/gi,"Attack"]
 ];
 function build(value){
  let s=term(value);
