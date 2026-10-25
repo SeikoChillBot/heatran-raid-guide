@@ -1,45 +1,46 @@
-# PokeMMO Raid Atlas — English edition
+# PokeMMO RAID ATLAS — English edition
 
-English localization of the [French Raid Atlas](https://github.com/SeikoChillBot/pokemmo-raid-guide-fr), with the same visual identity, page hierarchy, artworks, features and raid strategy data. Last synchronized with the French prototype: October 24, 2026.
+English localization of the [French RAID ATLAS](https://github.com/SeikoChillBot/pokemmo-raid-guide-fr). Updated **October 25, 2026**. The French repository is the design and feature reference; the English site is an English **in-game terminology conversion**, not a machine-literal translation.
 
-## Website pages
+## Public pages and navigation
 
-- `index.html` — landing page with four event categories.
-- `permanent.html` — six permanent raids; Heatran available and five future raid guides.
-- `heatran.html` — interactive four-player Heatran raid guide.
-- `coming-soon.html?event=...` — context-sensitive pages for upcoming events and raids.
-- `design-lab.html` — the original Raid Atlas design study translated to English; not part of the production navigation.
+| Page | Content |
+| --- | --- |
+| `index.html` | Home with the six-boss permanent-raid artwork carousel (shuffled, next/previous and automatic rotation) and the event categories |
+| `permanent.html` | Six permanent raid bosses; Heatran and Cresselia currently have guides |
+| `heatran.html` | Three Heatran routes: Crimson Core, Beorns/JinxedBoon video variant and Cloud Five v0.74 |
+| `cresselia.html` | Three selectable Cresselia routes: The Three Musketeers v2.1 (24 builds, 10 turns), Sensei / DoubleDude New Strategy (24 builds, 13 turns) and Latin Combo V2 (12-turn video reference) |
+| `halloween.html` | Halloween editions and archive access |
+| `halloween-2025.html` | All nine 2025 Halloween raid dossiers |
+| `halloween-2025-raid.html?boss=<id>` | Interactive archived 2025 encounters including Pumpking and both Darkrai difficulties |
+| `coming-soon.html` | Existing placeholders for planned events and raids |
+| `design-lab.html` | Earlier visual study, retained outside public navigation |
 
-This is a static HTML/CSS/JavaScript website with no build step. Keep the `assets/` folder alongside the HTML files when deploying to Cloudflare Pages or another static host.
+The Halloween 2025 navigation, page titles and guide visibly say **“Likely outdated”**. These are archived event strategies, not verified current-year routes.
 
-## Feature parity
+## Shared presentation
 
-The English edition retains:
+The English site follows the French site's approved **black / red / white / gray** design:
+- The original French V6 CSS rules are retained in `assets/raid-redesign-v6-fr-parity-1.css` through `-7.css`.
+- `assets/raid-guide-components-v6.css` and `assets/raid-components.js` provide canonical battle cards, Pokémon build cards and preparation components.
+- `assets/raid-guide-template.js` and `assets/raid-command-center-v7.css` provide the unified, compact sticky panel containing Strategy, P1–P4 role selection, and Battle / Pokémon / Preparation / Mechanics tabs. Its Collapse button folds the *entire* control panel.
+- All six permanent raid boss artworks rotate in the home hero; only documented guides are linked as available.
 
-- The approved graphite/white/red Raid Atlas design, responsive layout and animations.
-- Identical navigation: Home → Permanent Raids → Heatran; separate Coming Soon pages.
-- Both Heatran options: **Crimson Core (recommended)** and **Beorns / JinxedBoon (video variant)**.
-- Four player positions and six Pokémon per player, for a total of 48 strategy-specific Pokémon builds.
-- Six phases per strategy, with all 12 turn-by-turn commentaries, battle actions and conditional notes.
-- Twelve shared Heatran mechanics cards and two side-by-side strategy comparisons.
-- Preparation checklists, expandable builds, full-turn view, source links and clipboard feedback.
+## English Pokémon terminology and preserved raid data
 
-English in-game species, moves, abilities, items, natures and status notes follow the source data; the rotations and timing distinctions are unchanged.
+- `assets/official-pokemon-en.js` contains French-to-English Pokémon species, move, held-item, Ability and Nature pairs extracted from **PokéAPI language 5 (French) and language 9 (English)**.
+- `assets/raid-en-localization.js` converts published builds to the official English names and conventional English EV/IV abbreviations.
+- The source values, turn slots, team counts and strategy boundaries remain unchanged. No missing move, EV or IV is invented.
+- `assets/cresselia-en.js`, `assets/cresselia-alternatives-en.js`, `assets/halloween-2025-data-en.js`, `assets/halloween-2025-rosters-en.js` and `assets/halloween-2025-raid-en.js` are the language-specific data and engine files.
 
-## About the strategies
+**Cresselia limitation:** Latin Combo V2 is a 12-turn video strategy listed by community indexes, but its 24 builds and 48 exact actions were not independently verifiable from the available sources. It remains selectable with the original source reference and a clear warning. The Three Musketeers and Sensei have full builds and documented turn sequences.
 
-The Beorns/JinxedBoon option follows the **two-Xatu video variant**, not the separate, updated PDF variant that uses P3 Xatu + P4 Pelipper. Their builds and timings must not be combined casually. Crimson Core requires Magmortar on Heatran's right; the Beorns PDF requires Magmortar present without explicitly mandating a side. See the original sources in the footer of `heatran.html`.
+**Halloween limitation:** The 2025 archive includes 9 bosses and 228 roster positions across the documented strategy modes. Some Halloween builds were *community team proposals* rather than confirmed strategies; the English edition preserves those warnings. Old versions may no longer work in later seasonal events.
 
-## Sources and visual assets
+## Deployment and verification
 
-- [Crimson Core — Heatran Raid (Octillery strategy)](https://www.crimsoncoremmo.co.uk/guides/crimson-core-guides-heatran-raid-octillery-strat)
-- [Beorns / JinxedBoon — Heatran Octillery strategy](https://docs.google.com/document/d/1iZ0YhbEQntdbdRrBzSGR3PLiYkZSc0P962_3N_dnc_E/mobilebasic)
-- Pokémon artworks are linked to PokeAPI's sprite repository, as on the French site.
+This is a static HTML/CSS/JavaScript project; deploy the HTML pages and the full `assets/` directory together. Existing original artwork remains embedded in the retained CSS where required. See [VALIDATION_EN.md](VALIDATION_EN.md).
 
-All seven CSS files preserve the approved French visual rules. To keep the legacy background imagery identical without introducing missing binary assets, the three existing WebP images are embedded losslessly as base64 data in `assets/raid-hub.css` and `assets/heatran-theme.css`. The decoded images match the French source.
+Repository commits confirm source updates. They do **not** by themselves confirm a fresh Cloudflare Pages deployment or real browser/mobile testing; those should be checked after publishing.
 
-## Validation and deployment
-
-Run the checks in [VALIDATION_EN.md](VALIDATION_EN.md) after deploying. GitHub source commits alone do not confirm that a Cloudflare Pages manual deployment has taken place. The repository files have passed static and simulated-DOM checks, but mobile/desktop browser rendering and live game outcomes still require verification.
-
-This is an unofficial community project. PokeMMO and Pokémon belong to their respective rights holders.
+Community project, unaffiliated with PokeMMO or The Pokémon Company.
