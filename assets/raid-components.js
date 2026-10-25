@@ -53,7 +53,27 @@ function actionGrid(actions,selected){
   if(a.note)info.append(el("small","raid-when",a.note));
   let sprite=a.sprite;
   if(!sprite&&a.spriteUrl){sprite=el("img","sprite");sprite.src=a.spriteUrl;sprite.alt="";sprite.loading="lazy";}
-  if(sprite)line.append(sprite);
+  if(sprite){
+   // Shared EN and FR raid artwork treatment: use transparent official artwork
+   // instead of leaving an opaque sprite tile behind each Pokémon.
+   if(sprite.tagName==="IMG"||sprite.tagName==="img"){
+     const url=sprite.getAttribute("src")||"";
+     const found=url.match(/\/pokemon\/(\d+)\.png(?:\?.*)?$/);
+     if(found){
+       sprite.dataset.raidOriginalSprite=url;
+       sprite.src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+found[1]+".png";
+     }
+     sprite.classList.add("raid-action-art");
+     for(const prop of ["background","background-color","background-image","box-shadow","border","outline"]){
+       sprite.style.setProperty(prop,prop==="background"||prop==="background-color"?"transparent":"none","important");
+     }
+     sprite.style.setProperty("mix-blend-mode","normal","important");
+   }
+   line.append(sprite);
+  }
+  line.classList.add("raid-action-art-row");
+  line.style.setProperty("background","transparent","important");
+  info.classList.add("raid-action-art-details");
   line.append(info);card.append(line);grid.append(card);
  });
  return grid;
