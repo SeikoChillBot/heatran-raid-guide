@@ -642,25 +642,27 @@ for(const [t,i] of list){
  const panel=document.createElement("section");if(ST.all)panel.className="turn-section";
  const actions=t.actions.map(([slot,move],j)=>({
   name:D.team[j][slot].n,move,
-  spriteUrl:img(D.team[j][slot].id)
+  spriteUrl:img(D.team[j][slot].id),
+  build:{name:D.team[j][slot].n,item:D.team[j][slot].item,nature:D.team[j][slot].nature,
+   ability:D.team[j][slot].talent,ev:D.team[j][slot].ev,iv:D.team[j][slot].iv,
+   moves:(D.team[j][slot].attacks||"").split(/\s*[\/·]\s*/).filter(Boolean),source:current().title}
  }));
  const info=document.createElement("section");info.className="raid-tips";
  const heading=document.createElement("h3");heading.textContent="Turn notes — "+t.label;
  const note=document.createElement("p");note.textContent=t.info;
  info.append(heading,note);if(t.hp){const hp=document.createElement("p");hp.className="raid-alert";hp.textContent="Estimated boss HP after turn: "+t.hp+" (approximate).";info.append(hp);}
- const actionText="TOUR "+(i+1)+" / CRESSELIA 6★ — "+current().title+"\n"+
- t.actions.map(([slot,move],j)=>"P"+(j+1)+" · "+D.team[j][slot].n+" → "+move).join("\n")+"\nPV cible : "+t.hp;
+ const actionText="TURN "+(i+1)+" / CRESSELIA 6★ — "+current().title+"\n"+
+ t.actions.map(([slot,move],j)=>"P"+(j+1)+" · "+D.team[j][slot].n+" → "+move).join("\n")+"\nTarget HP: "+t.hp;
  RaidAtlasComponents.battleTurn({
   target:panel,index:i,total:D.turns.length,title:t.label,actions,selected:ST.player,
-  onPokemon:()=>{ST.tab="pokemon";render()},advice:info,copyText:actionText,
+  onTurnChange:ST.all?null:i=>{ST.turn=i;renderCombat()},advice:info,copyText:actionText,
   copy:(button,text)=>copy(text,button)
  });
  wrap.append(panel);
 }
-if(!ST.all)app.append(RaidAtlasComponents.phaseNav({current:ST.turn,total:D.turns.length,onChange:i=>{ST.turn=i;renderCombat()}}));
-else{const note=document.createElement("p");note.className="build-source-note";note.textContent="Full view: "+D.turns.length+" turns and "+D.turns.length*4+" actions. HP percentages are estimates, not guaranteed.";app.append(note);}
+if(ST.all){const note=document.createElement("p");note.className="build-source-note";note.textContent="Full view: "+D.turns.length+" turns and "+D.turns.length*4+" actions. HP percentages are estimates, not guaranteed.";app.append(note);}
 }
-function monCopy(m){return m.n+" @ "+m.item+"\nTalent : "+m.talent+"\nNature : "+m.nature+"\nIV : "+m.iv+"\nEV : "+m.ev+"\nAttaques : "+m.attacks+"\nNotes : "+m.note;}
+function monCopy(m){return m.n+" @ "+m.item+"\nAbility: "+m.talent+"\nNature: "+m.nature+"\nIV: "+m.iv+"\nEV: "+m.ev+"\nMoves: "+m.attacks+"\nNotes: "+m.note;}
 function renderPokemon(){
 const app=$("cres-app");app.replaceChildren();
 app.append(RaidAtlasComponents.feature({player:ST.player,boss:"Cresselia",
