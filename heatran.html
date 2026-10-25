@@ -121,12 +121,12 @@ function renderMechanics(app,strat){
 function cloudRender(){let app=$('app');app.replaceChildren();buttons($('tabs'),[['⚔ Battle','battle'],['◉ Pokémon','pokemon'],['✓ Preparation','checklist'],['ⓘ Mechanics','mechanics']],tab,v=>{tab=v;render()});$('players').hidden=tab==='mechanics';buttons($('players'),[0,1,2,3].map(i=>['P'+(i+1),i]),player,v=>{player=v;render()});$('focus').textContent='Cloud Five v0.74 · Player '+(player+1);const cloudCaution='Cloud Five v0.74 · The Council / Cadoiz. The source guide is still being finalized; watch RNG, knockout timing and replacement options.';if(tab==='battle'){
  app.append(RaidAtlasComponents.battleIntro('Heatran'));
  app.append(viewCheckbox('Full view · show all 11 turns',fullView,v=>{fullView=v;localStorage.setItem('pokemmo-en-full-view',v?'1':'0');render()}));
- if(!fullView)app.append(RaidAtlasComponents.phaseSelect({labels:cloudTurns.map((_,i)=>'Tour '+(i+1)),current:turn,onChange:i=>{turn=i;render()}}));
+ if(!fullView)app.append(RaidAtlasComponents.phaseSelect({labels:cloudTurns.map((_,i)=>'Turn '+(i+1)),current:turn,onChange:i=>{turn=i;render()}}));
  const list=fullView?cloudTurns.map((_,i)=>i):[turn];
  const wrap=document.createElement('div');if(fullView)wrap.className='all-turns';app.append(wrap);
  for(const n of list){
   const notes=document.createElement('section');notes.className='raid-tips';
-  const h=document.createElement('h3');h.textContent='À retenir — Tour '+(n+1);
+  const h=document.createElement('h3');h.textContent='Turn notes — Turn '+(n+1);
   const help=document.createElement('p');help.textContent=cloudNotes[n];notes.append(h,help);
   const phase=document.createElement('section');if(fullView)phase.className='turn-section';
   RaidAtlasComponents.battleTurn({target:phase,index:n,total:cloudTurns.length,title:'Heatran : '+cloudRemaining[n]+' estimated HP remaining',
@@ -160,7 +160,7 @@ function cloudRender(){let app=$('app');app.replaceChildren();buttons($('tabs'),
   });
   grid.append(RaidAtlasComponents.prepCard({name:fr(pk[0]),item:fr(pk[1]),sprite:sprite(pk[0]),checks}));
  });
- app.append(RaidAtlasComponents.progressCard('progress','PRÉPARATION'),grid);
+ app.append(RaidAtlasComponents.progressCard('progress','PREPARATION'),grid);
  updateProgress();
 }else{
  const intro=document.createElement('section');intro.className='mechanics-intro';
@@ -187,7 +187,7 @@ RaidAtlasComponents.battleTurn({
  onPokemon:()=>{tab='pokemon';render()},
  copyText:'Heatran T'+(phase+1)+' : '+r[phase].map(([poke,move],i)=>'P'+(i+1)+' '+fr(poke)+' > '+fr(move)).join(' ; '),
  copy:(button,value)=>copyWithFeedback(button,value)
-})};if(fullView){r.forEach((_,i)=>{let section=document.createElement('section');section.className='turn-section';renderTurn(i,section);allWrap.append(section)})}else{renderTurn(turn,allWrap)}let pn=document.createElement('div');pn.className='phase-nav';let prev=document.createElement('button');prev.textContent='← Previous';prev.disabled=turn===0;prev.onclick=()=>{turn--;render()};let next=document.createElement('button');next.textContent='Next phase →';next.disabled=turn===5;next.onclick=()=>{turn++;render()};pn.append(prev,next);if(!fullView)app.append(pn);}else if(tab==='pokemon'){let feature=document.createElement('section');feature.className='pokemon-feature-banner';feature.innerHTML='<div><span class="eyebrow">FICHES POKÉMON</span><h2>Préparez votre équipe</h2><p>Objets, talents, EV, IV prioritaires et attaques pour le joueur '+(player+1)+'. Ouvrez une fiche pour consulter le build complet.</p></div><img class="feature-octillery" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/224.png" alt="" loading="lazy">';app.append(feature);let sourcing=document.createElement('p');sourcing.className='build-source-note';sourcing.textContent=strat==='core'?'Crimson Core : natures, EV, attaques et objets selon le guide d’origine. Les IV notés « référence complémentaire Beorns » sont des seuils proposés par l’autre source et ne sont pas imposés par Crimson Core.':'Beorns / JinxedBoon : variante vidéo. Les éléments absents du PDF pour Bekipan J1 sont indiqués comme propositions ; les EV ou attaques expérimentaux sont signalés séparément.';app.append(sourcing);app.append(viewCheckbox('Expand all · show six builds',expandAll,v=>{expandAll=v;localStorage.setItem('pokemmo-en-expand-all',v?'1':'0');render()}));team[player].forEach((p,i)=>{
+})};if(fullView){r.forEach((_,i)=>{let section=document.createElement('section');section.className='turn-section';renderTurn(i,section);allWrap.append(section)})}else{renderTurn(turn,allWrap)}let pn=document.createElement('div');pn.className='phase-nav';let prev=document.createElement('button');prev.textContent='← Previous';prev.disabled=turn===0;prev.onclick=()=>{turn--;render()};let next=document.createElement('button');next.textContent='Next phase →';next.disabled=turn===5;next.onclick=()=>{turn++;render()};pn.append(prev,next);if(!fullView)app.append(pn);}else if(tab==='pokemon'){let feature=document.createElement('section');feature.className='pokemon-feature-banner';feature.innerHTML='<div><span class="eyebrow">POKÉMON BUILDS</span><h2>Prepare your team</h2><p>Held items, abilities, EVs, priority IVs and moves for player '+(player+1)+'. Expand a card for the complete build.</p></div><img class="feature-octillery" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/224.png" alt="" loading="lazy">';app.append(feature);let sourcing=document.createElement('p');sourcing.className='build-source-note';sourcing.textContent=strat==='core'?'Crimson Core : natures, EV, attaques et objets selon le guide d’origine. Les IV notés « référence complémentaire Beorns » sont des seuils proposés par l’autre source et ne sont pas imposés par Crimson Core.':'Beorns / JinxedBoon : variante vidéo. Les éléments absents du PDF pour Bekipan J1 sont indiqués comme propositions ; les EV ou attaques expérimentaux sont signalés séparément.';app.append(sourcing);app.append(viewCheckbox('Expand all · show six builds',expandAll,v=>{expandAll=v;localStorage.setItem('pokemmo-en-expand-all',v?'1':'0');render()}));team[player].forEach((p,i)=>{
  const pokemon={
   name:fr(p[0]),item:fr(p[1]),nature:fr(p[2]),
   ability:fr((strat==='core'?abilities:videoAbilities)[player][i]),
@@ -211,7 +211,7 @@ RaidAtlasComponents.battleTurn({
    onChange:checked=>{localStorage.setItem(key,checked?'1':'0');updateProgress()}};
  });
  g.append(RaidAtlasComponents.prepCard({name:fr(p[0]),item:fr(p[1]),sprite:sprite(p[0]),checks}));
-});let progress=RaidAtlasComponents.progressCard('progress','PRÉPARATION');app.append(progress,g);
+});let progress=RaidAtlasComponents.progressCard('progress','PREPARATION');app.append(progress,g);
 if(strat==='video'){
  let travel=document.createElement('details');travel.className='raid-hm';
  let title=document.createElement('summary');title.textContent='CS utiles hors combat (source Beorns)';
